@@ -16,3 +16,9 @@ Rscript bin/CNVnator/Find_ratio.R Example_data/ERR212367/snps.depth
 ```
 
 Then using the optimum window size, CNVnator is run via the docker script and using the optimum window size.
+
+In the final step of the CNVnator module of code, CNV stretches of DNA are converted to genes. If a gene overlaps with the CNV region by at least 80% then it is called a CNV
+
+```bash
+Rscript bin/CNVnator/CNVnator_output_0.1_round.r ./Example_data/ERR212367/CNVnator_out_100.txt
+```
