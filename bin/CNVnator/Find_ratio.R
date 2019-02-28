@@ -5,9 +5,9 @@ args = commandArgs(trailingOnly=TRUE)
 
 
 
-
-
-depth=read.delim(args[1],header=F)
+#Input should be a depth file.
+file=paste(args[1],sep="")
+depth=read.delim(file,header=F)
 k=100
 sites=sample(c(1:nrow(depth)),k)
 
@@ -42,7 +42,10 @@ results_frame$SD[i]=mean(temp_2)
 }
 results_frame$Ratio=results_frame$Mean/results_frame$SD
 
+#Make the output file name
 
-write.table(results_frame,paste(args[1],".table_full.txt",sep=""),quote=F,row.names=F,col.names=T)
+outdir=dirname(args[1])
+write.table(results_frame,paste(outdir,"/","CNVnator_window_table_full.txt",sep=""),quote=F,row.names=F,col.names=T)
 top_hit=which(abs(results_frame$Ratio-4.5)%in%min(abs(results_frame$Ratio-4.5)))
-write.table(results_frame[top_hit,c(1,4)],paste(args[1],".table_top_hit.txt",sep=""),quote=F,row.names=F,col.names=T)
+
+write.table(results_frame[top_hit,c(1,4)],paste(outdir,"/","CNVnator_window_table_top_hit.txt",sep=""),quote=F,row.names=F,col.names=T)
