@@ -4,11 +4,18 @@
 
 ### Step 1. Running CNVnator on mapped data
 
-After mapping short read data from the Illumina platform to the reference genome using Snippy, the number of reads covering each base is generated using samtools depth using the script Create_depth.sh
+After mapping short read data from the Illumina platform to the reference genome using Snippy, our pipeline can be run. 
+
 Our custom CNVnator pipeline can either be executed automatically using a conveninet wrapper:
+```bash
+ bash bin/CNVnator/CNVnator_atuo.sh ./Example_data/SRR5070670 snps.bam
+```
+
+
 
 Or each part can be executed individually:
 
+The number of reads covering each base is generated using samtools depth using the script Create_depth.sh
 ```
 bash ./bin/CNVnator/Create_depth.sh ./Example_data/ERR212367/snps.bam
 ``` 
