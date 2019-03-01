@@ -36,3 +36,8 @@ In the final step of the CNVnator module of code, CNV stretches of DNA are conve
 ```bash
 Rscript bin/CNVnator/CNVnator_output_0.1_round.r ./Example_data/ERR212367/CNVnator_out_100.txt
 ```
+
+### Step 2. Make a heatmap
+
+
+### Step 3. Network analysis
