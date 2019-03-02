@@ -1,6 +1,8 @@
 # Lets create a script that quickly screens for the ratio of the average RD signal to the standard deviation
-
-library(zoo)
+if(!require(zoo)){
+    install.packages("zoo",repos='http://cran.us.r-project.org')
+    library(zoo)
+}
 args = commandArgs(trailingOnly=TRUE)
 
 

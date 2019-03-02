@@ -1,6 +1,7 @@
 ##turn the output of CNVnator into a bed file
 library(IRanges)
 
+
 #input should be the genome name only
 
 args = commandArgs(trailingOnly=TRUE)
