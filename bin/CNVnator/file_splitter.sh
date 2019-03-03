@@ -5,33 +5,33 @@
 #file_name=$(sed  's/ /\\ /g'<<<$1)
 #echo file_name is $file_name
 #cd ./Reference_genomes
-head -1 "$1"
+#head -1 "$1"
 #head -1 "$file_name"
-#Is_fasta=$(head -1 "$(echo $file_name)"|grep -o ">"|wc -c)
-#echo $Is_fasta
+Is_fasta=$(head -1 "$1"|grep -o ">"|wc -c)
+echo $Is_fasta
 ##(head -1 $1|grep -o ">"
-#if [ "$Is_fasta" -ge "2" ]
-#then
-#	echo "Input is a .fasta file, executing script"
-##Header
-#Header=$(head -1 $file_name|cut -d' ' -f1)
-#echo Header is: $Header
+if [ "$Is_fasta" -ge "2" ]
+then
+	echo "Input is a .fasta file, executing script"
+#Header
+Header=$(head -1 "$1"|cut -d' ' -f1)
+echo "Header is: $Header"
 
 
 
 #Filename
 
-#sans_less=$(sed 's/>//g' <<<$Header)
-#Filename=$(echo $sans_less.fa)
+sans_less=$(sed 's/>//g' <<<$Header)
+Filename=$(echo $sans_less.fa)
 
-
-#mv file_name ./$Filename
+echo "Moving $1 to ./$Filename"
+mv "$1" ./Reference_genomes/$Filename
 
 #sed -i "1s/.*/$Header/" $Filename
 
-#else
-#	echo "File is not a fasta. Doing nothing."
-#fi
+else
+	echo "File is not a fasta. Doing nothing."
+fi
 #Header
 #Header=$(head -1 $1|cut -d' ' -f1)
 #echo $Header

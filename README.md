@@ -6,7 +6,11 @@
 
 After mapping short read data from the Illumina platform to the reference genome using Snippy, our pipeline can be run. 
 
-We need to put the Reference genome in its own dir, including splitting out any plasmids.A script still needs to be made for this
+Firstly, the reference genome is processed in a way that CNVnator likes. To do this the Make_reference.sh script is run on the reference genome downloaded from NCBI. At the moment this must be run from within the git directory.
+```bash
+ bash ./bin/CNVnator/Make_reference.sh GCF_000009065.1_ASM906v1_genomic.fna
+```
+
 
 Our custom CNVnator pipeline can either be executed automatically using a conveninet wrapper:
 ```bash
