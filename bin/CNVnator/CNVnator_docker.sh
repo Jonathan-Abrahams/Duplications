@@ -3,6 +3,13 @@
 
 
 window=$(cat $1 |tail -1|awk '{print $1}')
+ratio=$(cat $1 |tail -1|awk '{print $2}')
+
+
+#if [ "$ratio" -ge "3.1" ]
+if (( $(echo "$ratio > 3.1" |bc -l) ));
+then
+echo Ratio is abouve 3, procedign with CNVnator!
 echo $window
 Directory=$(dirname $1)
 mkdir $Directory/Reference_CNVnator
@@ -17,3 +24,7 @@ sudo docker run -v $Directory:/data wwliao/cnvnator cnvnator -root CNVnator_$win
 sudo docker run -v $Directory:/data wwliao/cnvnator cnvnator -root CNVnator_$window.root  -eval $window >$Directory/ratio_final_$window.txt
 tail -2  $Directory/ratio_final_$window.txt|head -1|awk '{print $window0}'
 
+else
+echo Ratio is below 3, coverage is too erratic to give good CNV results
+exit 1
+fi
