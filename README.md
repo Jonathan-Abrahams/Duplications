@@ -12,9 +12,10 @@ Firstly, the reference genome is processed in a way that CNVnator likes. To do t
 ```
 
 
-Our custom CNVnator pipeline can either be executed automatically using a conveninet wrapper:
+Our custom CNVnator pipeline can either be executed automatically using a conveninet wrapper. It requires the following input in this order (at the moment):Genome directory,name of bam file,reference genome directory and reference 
+GFF file, with only CDS or genes present.
 ```bash
- bash bin/CNVnator/CNVnator_auto.sh ./Example_data/SRR5070670 snps.bam
+bash ./bin/CNVnator/CNVnator_auto.sh  /home/ubuntu/Quick_genome_download/Mapped_genomes/ERR3014612 snps.bam ./Reference_genomes GCF_000195955.2_ASM19595v2_genomic.gff
 ```
 
 
@@ -71,3 +72,7 @@ We can then check for functional enrichment...
 ### Requirements
 R:
 IRanges and Zoo
+
+Linux:
+Docker
+bc

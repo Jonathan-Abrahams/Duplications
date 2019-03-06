@@ -10,7 +10,7 @@ echo "Ratio found for genome $1"
 
 bash bin/CNVnator/CNVnator_docker.sh $1/CNVnator_window_table_top_hit.txt $3
 echo "CNVnator complete for genome $1"
-Rscript ./bin/CNVnator/CNVnator_output_0.1_round.r $1/CNVnator_out_*.txt Pestis_gff.txt
+Rscript ./bin/CNVnator/CNVnator_output_0.1_round.r $1/CNVnator_out_*.txt $4
 
 
 
