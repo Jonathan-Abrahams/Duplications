@@ -5,7 +5,7 @@
 
 bash ./bin/CNVnator/Create_depth.sh $1/$2
 echo "Depth file created"
-Rscript ./bin/CNVnator/Find_ratio.R $1/output.depth
+Rscript ./bin/CNVnator/Chunk_it_real.R $1/output.depth
 echo "Ratio found"
 
 bash bin/CNVnator/CNVnator_docker.sh $1/CNVnator_window_table_top_hit.txt $3
