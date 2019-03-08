@@ -29,7 +29,7 @@ bash ./bin/CNVnator/Create_depth.sh ./Example_data/ERR212367/snps.bam
 
 Following generation of the coverage data,  optimum window size is estimated using the Ratio script.
 ```bash
- Rscript bin/CNVnator/Find_ratio.R Example_data/ERR212367/output.depth
+ Rscript bin/CNVnator/Chunk_it_real.R Example_data/ERR212367/output.depth
 ```
 
 Then using the optimum window size, CNVnator is run via the docker script. If the ratio is below 3, CNVnator will not be run and the auto script will stop.
