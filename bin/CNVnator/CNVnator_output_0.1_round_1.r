@@ -1,5 +1,6 @@
 #turn the output of CNVnator into a bed file
 
+
 library(IRanges)
 #input should be the genome name only
 
@@ -8,7 +9,8 @@ args = commandArgs(trailingOnly=TRUE)
 #input_path=paste("./","Tohama_artificial_CNV/Tohama_art_300_v2/snippy/CNVnator_out_100.txt",sep="")
 #input_path=paste("./",args[1],"/",args[1],"_CNVnator_out_",args[2],".txt",sep="")
 #input_path="CNVnator_out_100.txt"
-print(as.character(args[1]))
+
+print(args[1])
 CNVnator_output=read.delim(args[1],stringsAsFactors = F,head=F)
 
 Tohama_genes=read.delim(args[2],stringsAsFactors = F,head=F,comment.char = "#")
@@ -60,4 +62,4 @@ colnames(results_frame)[10]=args[1]
 #output_path=paste("./",args[1],"/","CNVnator_genes_",args[2],".txt",sep="")
 print(paste("Args[1] is: ",args[1]))
 col1=results_frame[10]
-write.table(col1,file=paste(args[1],"_genes_overlap.TXT",sep=""),quote=F,row.names=F,col.names=T)
+write.table(col1,file=paste(args[1],"_genes_overlap.txt",sep=""),quote=F,row.names=F,col.names=T)
