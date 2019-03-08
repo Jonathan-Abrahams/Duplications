@@ -4,9 +4,11 @@
 set -e
 
 bash ./bin/CNVnator/Create_depth.sh $1/$2
+
 echo "Depth file created for genome $1"
 Rscript ./bin/CNVnator/Find_ratio.R $1/output.depth
 echo "Ratio found for genome $1"
+
 
 bash bin/CNVnator/CNVnator_docker.sh $1/CNVnator_window_table_top_hit.txt $3
 echo "CNVnator complete for genome $1"
