@@ -17,7 +17,7 @@ all_data=all_data[,2:ncol(all_data)][,clusty$order]
 all_data$Genes=Genes
 all_data=all_data[,c(ncol(all_data),c(2:ncol(all_data))-1)]
 #
-write.csv(all_data,"all_data.csv",rownames=F)
+write.csv(all_data,"all_data.csv",row.names=F)
 Sys.setenv("plotly_username"="kows1337676")
 Sys.setenv("plotly_api_key"="0bkpedSpmrU56nSyWXj9")
 
