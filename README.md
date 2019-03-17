@@ -57,8 +57,24 @@ Rscript Duplications/bin/Heatmap/Generic_plotly_heatmap.R ./Quick_genome_downloa
 
 ### Step 3. Network analysis
 
+Whilst the heatmap is not completely nececary to be complete before the network analysis, the data must be transposed, which is undertaken in the heatmap script.
 
+Network analysis has been combined into an automated script: Network_auto.sh
 
+We then create a list of all the CNVs using the List_CNVs.r script.The transposed data is provided as the first arguement and the resulting list is specified as the second arguement.:
+
+```bash
+Rscript ./bin/Networks/List_CNVs.r all_data.csv all_CNVs.csv 
+```
+We then compute a distance matrix
+
+```bash
+Rscript ./bin/Networks/all_all.R all_CNVs.csv all_all.csv
+```
+We then are ready to compute the networks! Provide the all vs all database and the list of CNVs!
+```bash
+ Rscript ./bin/Networks/best_network.R all_vs_all.csv all_CNVs.csv
+```
 
 #Metadata
 
@@ -72,6 +88,8 @@ We can then check for functional enrichment...
 ### Requirements
 R:
 IRanges and Zoo
+Igraph
+
 
 Linux:
 Docker
