@@ -2,7 +2,7 @@
 args = commandArgs(trailingOnly=TRUE)
 #data=read.csv("all_data.csv",stringsAsFactors = F,header=T)
 
-data=read.csv(args[1],stringsAsFactors = F,header=T)
+data=read.delim(args[1],stringsAsFactors = F,header=T)
 
 data=data[,-1]
 length_L=list()

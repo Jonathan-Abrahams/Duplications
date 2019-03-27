@@ -46,8 +46,12 @@ Rscript bin/CNVnator/CNVnator_output_0.1_round.r ./Example_data/ERR212367/CNVnat
 
 ### Step 2. Make a heatmap
 
+First, gather all the seperate CNVnator calls into a single file:
 
-At the moment this step requries a plotly account. Need to add an export to html option
+```
+paste ./*/*.TXT
+```
+At the moment this step will create a static html file, but also try to publish using plotly. need to fix this.
 
 
 ```bash
@@ -64,12 +68,12 @@ Network analysis has been combined into an automated script: Network_auto.sh
 We then create a list of all the CNVs using the List_CNVs.r script.The transposed data is provided as the first arguement and the resulting list is specified as the second arguement.:
 
 ```bash
-Rscript ./bin/Networks/List_CNVs.r all_data.csv all_CNVs.csv 
+Rscript ./bin/Networks/List_CNVs.r all_data.txt all_CNVs.csv 
 ```
 We then compute a distance matrix
 
 ```bash
-Rscript ./bin/Networks/all_all.R all_CNVs.csv all_all.csv
+ Rscript ./bin/Networks/all_vs_all.R All_CNVs.csv all_all.csv
 ```
 We then are ready to compute the networks! Provide the all vs all database and the list of CNVs!
 ```bash

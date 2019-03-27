@@ -5,9 +5,14 @@ args = commandArgs(trailingOnly=TRUE)
 #args[1]="all_overlap.txt"
 
 all_data=read.delim(args[1],stringsAsFactors = F,header=T)
+#print(sum(is.infinite(all_data)))
+
 print("All data has been read")
 new_dist=dist(t(all_data[,2:ncol(all_data)]))
 print("All data trasnposed")
+print(sum(is.infinite(new_dist)))
+
+
 clusty=hclust(new_dist)
 
 #Create a genes column
