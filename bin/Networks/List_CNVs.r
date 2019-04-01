@@ -19,9 +19,13 @@ end_list=list()
 temp_col=list()
 col_list=vector()
 count=1
+
+#Set the very first gene as 1, therefore if there is a CNV at the start, it will be picked up as a change.
+data[1,]=1
 for(i in c(1:ncol(data)))
 {#find the breakpoints
   #print(i)
+  
   diffs <- data[,i][-1L] != data[,i][-length(data[,i])]
   idx <- c(which(diffs), length(data[,i]))
   # Starts is the gene precding the start of CNV so do a +1
@@ -31,7 +35,7 @@ for(i in c(1:ncol(data)))
   # Remove the final gene as a possible start
   if(is.na(table(starts%in%c(nrow(data)+1))['TRUE'])!='TRUE')
   {
-    starts=starts[-which(starts%in%3181)]
+    starts=starts[-which(starts%in%c(nrow(data)+1))]
   }
   
   
