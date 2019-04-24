@@ -16,7 +16,7 @@ colnames(CNVnator_output)=c("Type","Location","Length","Depth","E1","E2","E3","E
 CNVnator_output=CNVnator_output[CNVnator_output$E1<0.0001,]
 CNVnator_processed=CNVnator_output
 #CNVnator_processed$Location=gsub("NC_002929.2:","",CNVnator_output$Location)
-CNVnator_processed$Location=gsub("NC_.*:","",CNVnator_output$Location,perl = T)
+CNVnator_processed$Location=gsub(".*:","",CNVnator_output$Location,perl = T)
 
 cc       <- strsplit(CNVnator_processed$Location,"-")
 #print(cc)
