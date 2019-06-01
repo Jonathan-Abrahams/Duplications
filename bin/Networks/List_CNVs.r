@@ -31,7 +31,7 @@ for(i in c(1:ncol(data)))
   # Remove the final gene as a possible start
   if(is.na(table(starts%in%c(nrow(data)+1))['TRUE'])!='TRUE')
   {
-    starts=starts[-which(starts%in%3181)]
+    starts=starts[-which(starts%in%c(nrow(data)+1))]
   }
   
   
