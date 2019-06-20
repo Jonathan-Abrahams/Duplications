@@ -76,6 +76,12 @@ We then are ready to compute the networks! Provide the all vs all database and t
  Rscript ./bin/Networks/best_network.R all_vs_all.csv all_CNVs.csv
 ```
 
+Stats can be calculated on all the networks:
+
+```
+Rscript ./Duplications/bin/Networks/CNV_stats.R all_CNVs.csv CNV_membership.csv ./Duplications/B1917.gff all_all.csv
+
+```
 #Metadata
 
 ##Cogs

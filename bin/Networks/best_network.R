@@ -41,8 +41,8 @@ for(i in (c(1:length(over_3))))
    jpeg(paste("Network_",i,".jpg",sep=""), units="in", width=5, height=5, res=300)
   # tiff(paste("Network_",i,".tiff",sep=""), units="in", width=15, height=15, res=300)
    # pdf(paste("Network_",i,".pdf",sep=""))
-   #plot(g_1,layout=l_1,vertex.size=10,curved=0,edge.width=1.5,vertex.label=NA)
-   plot(clp2_1,g_1,layout=l_1,vertex.size=10,curved=0,edge.width=1.5,vertex.label=NA)
+   plot(g_1,layout=l_1,vertex.size=10,curved=0,edge.width=1.5,vertex.label=NA)
+  # plot(clp2_1,g_1,layout=l_1,vertex.size=10,curved=0,edge.width=1.5,vertex.label=NA)
   
     dev.off()
 }
