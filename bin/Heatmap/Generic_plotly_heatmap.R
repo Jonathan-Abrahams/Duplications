@@ -27,10 +27,12 @@ clusty=hclust(new_dist)
 
 #Create a genes column
 
+
 Genes=c(1:nrow(all_data_f))
 all_data_f=all_data_f[,2:ncol(all_data_f)][,clusty$order]
 all_data_f$Genes=Genes
 all_data_f=all_data_f[,c(ncol(all_data_f),c(2:ncol(all_data_f))-1)]
+
 #
 write.csv(all_data_f,"all_data.csv",row.names=F)
 Sys.setenv("plotly_username"="kows1337676")
@@ -46,3 +48,6 @@ p <- plot_ly(x=colnames(all_data_f[2:ncol(all_data_f)]),z = as.matrix(all_data_f
 #htmlwidgets::saveWidget(as_widget(p), "graph.html")
 chart_link = api_create(p, filename=args[2])
 chart_link
+#If this fails its not a huge deal
+htmlwidgets::saveWidget(as_widget(p), "graph.html")
+
