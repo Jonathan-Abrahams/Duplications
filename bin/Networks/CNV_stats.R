@@ -73,7 +73,7 @@ for(i in c(1:length(maxxy)))
 
     
   }
-  core_75=as.numeric(names(table(unlist(temp_list))[which(as.numeric(table(unlist(temp_list)))>=c(round(0.75*max_table)))]))
+  core_75=as.numeric(names(table(unlist(temp_list))[which(as.numeric(table(unlist(temp_list)))>=c(round(0.9*max_table)))]))
   results_frame$Core_75_start[i]=as.character(gff$V9[min(core_75)])
   results_frame$Core_75_end[i]=as.character(gff$V9[max(core_75)])
   results_frame$Core_75_contig[i]=length(table(core_75[-1L]-core_75[1:c(length(core_75)-1)]))

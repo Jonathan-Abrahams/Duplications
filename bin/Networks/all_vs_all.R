@@ -44,7 +44,7 @@ scores
 
 new_df=as.data.frame(scores)
 #write.csv(write.csv(all_all,"all_vs_all_distance_two_way_new1.csv",col.names=FALSE,row.names=FALSE))
-write.csv(write.csv(all_all,args[2],col.names=FALSE,row.names=FALSE))
+write.csv(write.csv(scores,args[2],col.names=FALSE,row.names=FALSE))
 
 #full_data=data.frame(Start=first_vector,end=end_vector,Length=length_vector)
 #write.csv(full_data,"Full_data_set_for_filtered_new_CNV1.csv",row.names=F)
