@@ -63,7 +63,7 @@ Depth_file_chunks=seq(1,nrow(depth),10000)
 
 
 
-window=seq(100,1001,100)
+window=seq(500,1001,100)
 ratio_v=vector()
 for(i in c(1:length(window)))
 {
