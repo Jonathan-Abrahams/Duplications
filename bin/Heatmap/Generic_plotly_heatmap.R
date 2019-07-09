@@ -21,7 +21,7 @@ for( k in c(1:ncol(all_data)))
 }
 print(inf_vector)
 all_data_f=all_data[,!c(1:ncol(all_data)%in%inf_vector)]
-new_dist=dist(t(all_data_f[,2:ncol(all_data_f)]))
+new_dist=dist(t(all_data_f[,1:ncol(all_data_f)]))
 print("All data trasnposed")
 clusty=hclust(new_dist)
 
@@ -29,7 +29,7 @@ clusty=hclust(new_dist)
 
 
 Genes=c(1:nrow(all_data_f))
-all_data_f=all_data_f[,2:ncol(all_data_f)][,clusty$order]
+all_data_f=all_data_f[,1:ncol(all_data_f)][,clusty$order]
 all_data_f$Genes=Genes
 all_data_f=all_data_f[,c(ncol(all_data_f),c(2:ncol(all_data_f))-1)]
 
