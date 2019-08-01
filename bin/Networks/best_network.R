@@ -11,7 +11,7 @@ CNV_data=read.csv(args[2])
 library("igraph") 
 
 
-
+data1[data1<0.5]=0
 g  <- graph.adjacency(as.matrix(data1), weighted=T,mode="undirected",diag=F)
 clp2=cluster_fast_greedy(g)
 pol= fastgreedy.community(g)
@@ -28,6 +28,7 @@ write.csv(result_frame,"CNV_membership.csv",row.names=F)
 testy_vector=vector()
 
 over_3=which(as.numeric(table(clp2$membership))>=3)
+density_v=c()
 for(i in (c(1:length(over_3))))
 {
   ones=which(clp2$membership==over_3[i])
@@ -42,8 +43,12 @@ for(i in (c(1:length(over_3))))
   # tiff(paste("Network_",i,".tiff",sep=""), units="in", width=15, height=15, res=300)
    # pdf(paste("Network_",i,".pdf",sep=""))
    plot(g_1,layout=l_1,vertex.size=10,curved=0,edge.width=1.5,vertex.label=NA)
+   density_v[i]=edge_density(g_1)
   # plot(clp2_1,g_1,layout=l_1,vertex.size=10,curved=0,edge.width=1.5,vertex.label=NA)
   
     dev.off()
 }
+
+results1=data.frame(Network_name=names(table(clp2$membership)),Frequency=table(clp2$membership),Network_dens=density_v)
+write.csv(results1,"Network_dens_in_order.csv")
 
