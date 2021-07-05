@@ -2,19 +2,22 @@
 
 ## This Repo contains the code needed to reproduce the analysis conducted in  Abrahams et al.
 
+Test data is included in the Test data directory.
+
 ### Step 1. Running CNVnator on mapped data
 
 After mapping short read data from the Illumina platform to the reference genome using Snippy our pipeline can be run. 
 
 Firstly, the reference genome is processed in a way that is compatible with CNVnator. To do this the Make_reference.sh script is run on the reference genome downloaded from NCBI.
+
 ```bash
- bash ./bin/CNVnator/Make_reference.sh GCF_000009065.1_ASM906v1_genomic.fna
+ bash ./bin/CNVnator/Make_reference.sh ./Test_data/B1917.ref.fa
 ```
 
 Our custom CNVnator pipeline can be executed automatically using a conveninet wrapper. It requires the following input in this order (at the moment):Genome directory,name of bam file,reference genome directory and reference GFF file, with only CDS or genes present.
 
 ```bash
-bash ./bin/CNVnator/CNVnator_auto.sh  /home/ubuntu/Quick_genome_download/Mapped_genomes/ERR3014612 snps.bam ./Reference_genomes GCF_000195955.2_ASM19595v2_genomic.gff
+bash ./bin/CNVnator/CNVnator_auto.sh  ./Test_data/SRR942708 snps.bam ./Reference_genomes ./Test_data/B1917_modified.gff
 ```
 
 ### Step 2. Make a heatmap
@@ -43,7 +46,7 @@ Rscript ./bin/Networks/all_vs_all.R all_CNVs.csv all_all.csv
 ```
 We then are ready to compute the networks! Provide the all vs all database and the list of CNVs!
 ```bash
- Rscript ./bin/Networks/best_network.R all_vs_all.csv all_CNVs.csv
+ Rscript ./bin/Networks/Network_analysis.R all_vs_all.csv all_CNVs.csv
 ```
 
 Stats can be calculated on all the networks:
