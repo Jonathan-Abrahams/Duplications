@@ -4,10 +4,7 @@ library(IRanges)
 #input should be the genome name only
 
 args = commandArgs(trailingOnly=TRUE)
-#args[1]="SRR5071080"
-#input_path=paste("./","Tohama_artificial_CNV/Tohama_art_300_v2/snippy/CNVnator_out_100.txt",sep="")
-#input_path=paste("./",args[1],"/",args[1],"_CNVnator_out_",args[2],".txt",sep="")
-#input_path="CNVnator_out_100.txt"
+args[1]="SRR5071080"
 print(as.character(args[1]))
 CNVnator_output=read.delim(args[1],stringsAsFactors = F,head=F)
 
@@ -15,7 +12,6 @@ Tohama_genes=read.delim(args[2],stringsAsFactors = F,head=F,comment.char = "#")
 colnames(CNVnator_output)=c("Type","Location","Length","Depth","E1","E2","E3","E4","Other")
 CNVnator_output=CNVnator_output[CNVnator_output$E1<0.0001,]
 CNVnator_processed=CNVnator_output
-#CNVnator_processed$Location=gsub("NC_002929.2:","",CNVnator_output$Location)
 CNVnator_processed$Location=gsub(".*:","",CNVnator_output$Location,perl = T)
 
 cc       <- strsplit(CNVnator_processed$Location,"-")
@@ -25,11 +21,8 @@ CNVnator_processed$Starts    <- unlist(cc)[2*(1:length(CNVnator_output$Location)
 CNVnator_processed$Ends    <- unlist(cc)[2*(1:length(CNVnator_output$Location))  ]
 
 head(CNVnator_processed)
-print("After head")
 CNVnator_ranges=IRanges(as.numeric(CNVnator_processed$Starts),as.numeric(CNVnator_processed$Ends))
-print("After CNVnator_ranges")
 Tohama_ranges=IRanges(as.numeric(Tohama_genes$V4),as.numeric(Tohama_genes$V5))
-print("After Tohama_ranges")
 
 results=findOverlaps(CNVnator_ranges,Tohama_ranges)
 
@@ -54,10 +47,8 @@ for(i in c(1:length(int_list)))
    
   
 }
-print("After loop")
 colnames(results_frame)[10]=args[1]
 #output_path=paste("./","Tohama_artificial_CNV/Tohama_art_300_v2/snippy/","Tohama_1col_CNVnator_simple","_200_round_1.6.txt",sep="")
 #output_path=paste("./",args[1],"/","CNVnator_genes_",args[2],".txt",sep="")
-print(paste("Args[1] is: ",args[1]))
 col1=results_frame[10]
 write.table(col1,file=paste(args[1],"_genes_overlap.TXT",sep=""),quote=F,row.names=F,col.names=T)

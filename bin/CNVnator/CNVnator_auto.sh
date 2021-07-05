@@ -21,7 +21,7 @@ echo $BP
 if [[ $Ratio>=5 && $BP=100 ]]
 
 then
-	echo "Ratio is abouve 5 and window length is 100"
+	echo "Ratio is above 5 and window length is 100"
 	cp $1/CNVnator_window_table_top_hit.txt $1/CNVnator_window_table_top_hit_modified.txt
 
 	sed -i 's/100/200/g'  $1/CNVnator_window_table_top_hit_modified.txt
@@ -41,10 +41,8 @@ else
 fi
 
 
-#bash bin/CNVnator/CNVnator_docker.sh $1/CNVnator_window_table_top_hit.txt $3
 echo "CNVnator complete for genome $1"
 #echo "overlapping genes with CNVnator_out_$BP.txt"
-#Rscript ./bin/CNVnator/CNVnator_output_0.1_round.r $1/CNVnator_out_$BP.txt $4
 
 
 
