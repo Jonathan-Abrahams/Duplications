@@ -1,36 +1,33 @@
 # Calculate CNV stats
 args = commandArgs(trailingOnly=TRUE)
 
-#CNV_data=read.csv("Extracted_CNVs_new.csv")
 
 CNV_data=read.csv(args[1])
 
-#group_data=read.csv("CNV_membership_new.csv")
 group_data=read.csv(args[2])
 
-kolp3=merge(CNV_data,group_data,by.x ="X",by.y = "CNV_number" )
-write.csv(kolp3,"CNV_merged_data.csv")
-#gff=read.delim("BP_locus_tags_NO_PSEUDO_CDHIT.gff",header=F)
+Merged=merge(CNV_data,group_data,by.x ="X",by.y = "CNV_number" )
+write.csv(Merged,"CNV_merged_data.csv")
 gff=read.delim(args[3],header=F)
 
 
-#maxxy=factor(unique(group_data$group),levels=c("1","2","3","4a","4b","5a","5b","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"),ordered = T)
-maxxy=sort(factor(unique(group_data$group)))
-#maxxy=maxxy[c(2,1,6,9,5,12,22,7,19,23,21,11,10,8,3,4,13,14,15,16,17,18,20)]
-kolp=as.character(levels(maxxy))
-results_frame=data.frame(CNV_class=maxxy,
+#Maximum=factor(unique(group_data$group),levels=c("1","2","3","4a","4b","5a","5b","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"),ordered = T)
+Maximum=sort(factor(unique(group_data$group)))
+#Maximum=Maximum[c(2,1,6,9,5,12,22,7,19,23,21,11,10,8,3,4,13,14,15,16,17,18,20)]
+kolp=as.character(levels(Maximum))
+results_frame=data.frame(CNV_class=Maximum,
                          Frequency=as.numeric(table(group_data$group)[match(kolp,names(table(group_data$group)))]),
-                         Mean_length=c(1:length(maxxy)),
-                         Median_start=c(rep("a",length(maxxy))),
-                         Median_end=c(rep("a",length(maxxy))),
-                         Median_middle=c(rep("a",length(maxxy))),
-                         SD_of_overlap=c(1:length(maxxy)),
-                         mean_copy_number=c(1:length(maxxy)),
-                         Strains=c(rep("a",length(maxxy))),
-                         Core_75_start=c(rep("a",length(maxxy))),
-                         Core_75_end=c(rep("a",length(maxxy))),
-                         Core_75_contig=c(rep("a",length(maxxy))),
-                         core_proportion=c(rep("a",length(maxxy))),
+                         Mean_length=c(1:length(Maximum)),
+                         Median_start=c(rep("a",length(Maximum))),
+                         Median_end=c(rep("a",length(Maximum))),
+                         Median_middle=c(rep("a",length(Maximum))),
+                         SD_of_overlap=c(1:length(Maximum)),
+                         mean_copy_number=c(1:length(Maximum)),
+                         Strains=c(rep("a",length(Maximum))),
+                         Core_75_start=c(rep("a",length(Maximum))),
+                         Core_75_end=c(rep("a",length(Maximum))),
+                         Core_75_contig=c(rep("a",length(Maximum))),
+                         core_proportion=c(rep("a",length(Maximum))),
                          stringsAsFactors = F)
 #all_all_data=read.csv("all_vs_all_distance_two_way_new1.csv")
 all_all_data=read.csv(args[4])
@@ -39,11 +36,11 @@ all_all_data=read.csv(args[4])
 # Reorder the factor
 
 
-for(i in c(1:length(maxxy)))
+for(i in c(1:length(Maximum)))
 {
   
   
-  cluster=as.character(maxxy[i])
+  cluster=as.character(Maximum[i])
   
   results_frame$Mean_length[i]=round(mean(CNV_data$Length[group_data[which(group_data$group==cluster),1]]))+1
   results_frame$Median_start[i]=as.character(gff$V9[median(CNV_data$Start[group_data[which(group_data$group==cluster),1]])])
@@ -82,8 +79,7 @@ for(i in c(1:length(maxxy)))
   
   
   
-  # Need to figure out how to manipulate modualrity for each group?
-  # results_frame$SD_of_overlap[i]=sd(unlist(all_all_data[all_all_data[,which(group_data$group==i)]>0]))
+
   print(i)
 
   
@@ -93,11 +89,4 @@ for(i in c(1:length(maxxy)))
 results_frame_ordered=results_frame[order(results_frame$Frequency,decreasing = T),]
 write.csv(results_frame_ordered,"CNV_stats_extended_new.csv",row.names=F)
 
-#A quick look into how many strains contain any duplication region
-# yes=0
-# for(i in c(1:ncol(new))){
-#   
-#   if(any(new[,i]>1))
-#   {yes=yes+1}
-# }
 

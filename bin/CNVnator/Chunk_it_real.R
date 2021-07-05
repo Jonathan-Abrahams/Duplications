@@ -1,16 +1,6 @@
 library(dplyr)
 
-Vanilla_mean_paste=function(Window_start,Window_size,Depth_file)
-{
-  Depth_ting=Depth_file[c(Window_start:c(Window_start+Window_size)),3]
-  #Provides a mean for a single window
-  meany=mean(Depth_ting)
-  
-  #also gives SD
 
-  
-  return(meany)
-}
 
 
 Create_window_from_chunk=function(Chunk_of_depth,Start_position,Window_size)
@@ -20,7 +10,7 @@ Create_window_from_chunk=function(Chunk_of_depth,Start_position,Window_size)
   return(Chunk_of_depth[Start_position:c(Start_position+Window_size)])
   
 }
-Vanilla_ratio_chunk_new=function(Chunk_of_depth,Window_size)
+Vanilla_ratio_chunk=function(Chunk_of_depth,Window_size)
 {
   #Given a chunk of depth,a vector of windows get the mean and sd of those tings
   #create the windows
@@ -42,7 +32,7 @@ Full_command=function(Window_size,Depth_file_chunks, Depth_file)
   {
     #print(i)
     Depth_chunk=Depth_file[c(Depth_file_chunks[i]: Depth_file_chunks[i+1]),3]
-    Results_list[count]=list(Vanilla_ratio_chunk_new(Chunk_of_depth = Depth_chunk,Window_size = Window_size))
+    Results_list[count]=list(Vanilla_ratio_chunk(Chunk_of_depth = Depth_chunk,Window_size = Window_size))
     
     count=count+1
   }
@@ -67,9 +57,9 @@ window=seq(500,1001,100)
 ratio_v=vector()
 for(i in c(1:length(window)))
 {
-  kek=Full_command(window[i],Depth_file_chunks,depth)
+  chunks=Full_command(window[i],Depth_file_chunks,depth)
   print(i)
-  all_results=bind_rows(kek)
+  all_results=bind_rows(chunks)
   all_results$Ratio=all_results$Mean/all_results$SD 
   
   

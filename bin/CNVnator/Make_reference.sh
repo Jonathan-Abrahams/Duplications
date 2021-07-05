@@ -22,15 +22,5 @@ rm ./Reference_genomes/$1
 
 #Call the script which will split and rename it
 
-#This is troublesome.
-#find ./Reference_genomes/* -print0 |xargs -0 -n1  bash ./bin/CNVnator/file_splitter.sh 
 find ./Reference_genomes/* -print0 -exec bash ./bin/CNVnator/file_splitter.sh "{}" \;
 
-#files=$(find ./Reference_genomes/* -print0)|sed 's/\./\\n\./g'
-#echo $files
-
-#for OUTPUT in "$files"
-#do#
-#	echo $OUTPUT
-#
-#done
