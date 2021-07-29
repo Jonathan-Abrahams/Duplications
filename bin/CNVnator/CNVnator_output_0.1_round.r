@@ -4,7 +4,7 @@ library(IRanges)
 #input should be the genome name only
 
 args = commandArgs(trailingOnly=TRUE)
-args[1]="SRR5071080"
+#args[1]="SRR5071080"
 print(as.character(args[1]))
 CNVnator_output=read.delim(args[1],stringsAsFactors = F,head=F)
 
